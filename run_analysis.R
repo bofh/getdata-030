@@ -36,6 +36,6 @@ colnames(meanStdData)[2]<-"label"
 melted <- melt(meanStdData, id.var = c("subject", "label"))
 result <- dcast(melted, subject + label ~ variable, mean)
 
-write.table(result, "tidy.txt")
+write.table(result, "tidy.txt", row.names=FALSE)
 
 result
