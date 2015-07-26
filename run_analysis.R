@@ -1,3 +1,5 @@
+library(reshape2)
+
 basePath <- "UCI HAR Dataset"
 testPath <- file.path(basePath, "test")
 trainPath <- file.path(basePath, "train")
@@ -29,3 +31,11 @@ filter <- grep("mean|std", colnames(fullData))
 meanStdData <- fullData[c(1, 2, 3, filter)]
 
 # independent tidy data set with the average of each variable for each activity and each subject
+# subject activity average
+colnames(meanStdData)[2]<-"label"
+melted <- melt(meanStdData, id.var = c("subject", "label"))
+result <- dcast(melted, subject + label ~ variable, mean)
+
+write.table(result, "tidy.txt")
+
+result
