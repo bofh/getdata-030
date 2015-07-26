@@ -1,1 +1,5 @@
 UCI HAR Dataset
+.httr-oauth
+.RData
+.Rhistory
+*.swp
